@@ -1,0 +1,114 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css"></head><body>
+<svg id="fig" width="1200" height="722" viewBox="0 0 1200 722" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#595959"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#BF9000"/></marker>
+  </defs>
+  <!-- header row -->
+  <g font-size="20" font-weight="bold" fill="#fff" text-anchor="middle">
+    <rect x="125" y="8" width="170" height="40" rx="8" fill="#595959"/><text x="210" y="35">一年級</text>
+    <rect x="305" y="8" width="170" height="40" rx="8" fill="#595959"/><text x="390" y="35">二年級上學期</text>
+    <rect x="485" y="8" width="250" height="40" rx="8" fill="#1F4E79"/><text x="610" y="35">二年級下學期（115-2）</text>
+    <rect x="745" y="8" width="250" height="40" rx="8" fill="#1F4E79"/><text x="870" y="35">三年級上學期（116-1）</text>
+    <rect x="1005" y="8" width="190" height="40" rx="8" fill="#595959"/><text x="1100" y="35">三下～四年級</text>
+  </g>
+  <!-- band A -->
+  <rect x="5" y="58" width="1190" height="132" rx="10" fill="#F2F2F2"/>
+  <text x="60" y="118" text-anchor="middle" font-size="22" font-weight="bold" fill="#404040">先備基礎</text>
+  <text x="60" y="148" text-anchor="middle" font-size="19" fill="#595959">（L0）</text>
+  <rect x="130" y="72" width="160" height="104" rx="10" fill="#fff" stroke="#7F7F7F" stroke-width="2"/>
+  <text x="210" y="106" text-anchor="middle" font-size="22" font-weight="bold" fill="#262626">程式設計</text>
+  <text x="210" y="134" text-anchor="middle" font-size="20" fill="#262626">（一）（二）</text>
+  <text x="210" y="162" text-anchor="middle" font-size="18" fill="#7F7F7F">運算思維</text>
+  <rect x="310" y="72" width="160" height="104" rx="10" fill="#fff" stroke="#7F7F7F" stroke-width="2"/>
+  <text x="390" y="106" text-anchor="middle" font-size="22" font-weight="bold" fill="#262626">資料結構</text>
+  <text x="390" y="134" text-anchor="middle" font-size="20" fill="#262626">程式識讀</text>
+  <text x="390" y="162" text-anchor="middle" font-size="18" fill="#7F7F7F">演算法基礎</text>
+  <line x1="290" y1="124" x2="308" y2="124" stroke="#595959" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="500" y="112" font-size="20" fill="#404040" font-weight="bold">不導入生成式 AI・不申請本計畫補助</text>
+  <text x="500" y="146" font-size="19" fill="#595959">奠定判斷與驗證 AI 產出之程式識讀基本功（評量採無 AI 環境）</text>
+  <!-- band B -->
+  <rect x="5" y="200" width="1190" height="272" rx="10" fill="#EAF2FB"/>
+  <text x="60" y="300" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F4E79">軟體開發</text>
+  <text x="60" y="328" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F4E79">課群</text>
+  <text x="60" y="358" text-anchor="middle" font-size="18" fill="#1F4E79">本計畫重構</text>
+  <text x="60" y="386" text-anchor="middle" font-size="18" fill="#1F4E79">4 門 12 學分</text>
+  <!-- prereq arrow -->
+  <path d="M390,176 V403 M390,268 H486 M390,403 H486" stroke="#595959" stroke-width="2.5" fill="none"/>
+  <path d="M470,268 H488" stroke="#595959" stroke-width="2.5" marker-end="url(#a)"/>
+  <path d="M470,403 H488" stroke="#595959" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="402" y="342" font-size="18" fill="#595959">先修</text>
+  <!-- course boxes -->
+  <g>
+    <rect x="490" y="212" width="230" height="112" rx="10" fill="#fff" stroke="#2E75B6" stroke-width="2.5"/>
+    <path d="M490,222 a10,10 0 0 1 10,-10 H710 a10,10 0 0 1 10,10 V250 H490 Z" fill="#2E75B6"/>
+    <text x="605" y="240" text-anchor="middle" font-size="22" font-weight="bold" fill="#fff">軟體需求分析</text>
+    <text x="605" y="279" text-anchor="middle" font-size="18" fill="#262626">基礎・知能｜3 學分｜必修</text>
+    <text x="605" y="309" text-anchor="middle" font-size="19" fill="#2E75B6">需求階段｜C1・C6</text>
+  </g>
+  <g>
+    <rect x="490" y="350" width="230" height="112" rx="10" fill="#fff" stroke="#C55A11" stroke-width="2.5"/>
+    <path d="M490,360 a10,10 0 0 1 10,-10 H710 a10,10 0 0 1 10,10 V388 H490 Z" fill="#C55A11"/>
+    <text x="605" y="378" text-anchor="middle" font-size="22" font-weight="bold" fill="#fff">全球資訊網程式設計</text>
+    <text x="605" y="417" text-anchor="middle" font-size="18" fill="#262626">核心・實作｜3 學分｜選修</text>
+    <text x="605" y="447" text-anchor="middle" font-size="19" fill="#C55A11">實作階段｜C3・C5・C6</text>
+  </g>
+  <g>
+    <rect x="760" y="212" width="230" height="112" rx="10" fill="#fff" stroke="#C55A11" stroke-width="2.5"/>
+    <path d="M760,222 a10,10 0 0 1 10,-10 H980 a10,10 0 0 1 10,10 V250 H760 Z" fill="#C55A11"/>
+    <text x="875" y="240" text-anchor="middle" font-size="22" font-weight="bold" fill="#fff">軟體設計</text>
+    <text x="875" y="279" text-anchor="middle" font-size="18" fill="#262626">核心・實作｜3 學分｜必修</text>
+    <text x="875" y="309" text-anchor="middle" font-size="19" fill="#C55A11">設計階段｜C2・C3・C5</text>
+  </g>
+  <g>
+    <rect x="760" y="350" width="230" height="112" rx="10" fill="#fff" stroke="#548235" stroke-width="2.5"/>
+    <path d="M760,360 a10,10 0 0 1 10,-10 H980 a10,10 0 0 1 10,10 V388 H760 Z" fill="#548235"/>
+    <text x="875" y="378" text-anchor="middle" font-size="22" font-weight="bold" fill="#fff">軟體品質與測試</text>
+    <text x="875" y="417" text-anchor="middle" font-size="18" fill="#262626">進階・應用｜3 學分｜選修</text>
+    <text x="875" y="447" text-anchor="middle" font-size="19" fill="#548235">驗證階段｜C3・C4・C5</text>
+  </g>
+  <!-- relations -->
+  <line x1="720" y1="268" x2="758" y2="268" stroke="#595959" stroke-width="2.5" marker-end="url(#a)"/>
+  <line x1="720" y1="406" x2="758" y2="406" stroke="#595959" stroke-width="2.5" marker-end="url(#a)"/>
+  <line x1="720" y1="372" x2="758" y2="306" stroke="#595959" stroke-width="2.5" marker-end="url(#a)"/>
+  <line x1="605" y1="326" x2="605" y2="348" stroke="#595959" stroke-width="2.5" marker-start="url(#a)" marker-end="url(#a)"/>
+  <line x1="875" y1="326" x2="875" y2="348" stroke="#595959" stroke-width="2.5" marker-start="url(#a)" marker-end="url(#a)"/>
+  <!-- electives -->
+  <rect x="1010" y="212" width="180" height="250" rx="10" fill="#fff" stroke="#7F7F7F" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="1100" y="250" text-anchor="middle" font-size="20" font-weight="bold" fill="#404040">橫向延伸選修</text>
+  <line x1="1030" y1="266" x2="1170" y2="266" stroke="#BFBFBF" stroke-width="1.5"/>
+  <text x="1100" y="304" text-anchor="middle" font-size="19" fill="#404040">人機介面設計</text>
+  <text x="1100" y="346" text-anchor="middle" font-size="19" fill="#404040">設計模式</text>
+  <text x="1100" y="388" text-anchor="middle" font-size="19" fill="#404040">軟體開發</text>
+  <text x="1100" y="414" text-anchor="middle" font-size="19" fill="#404040">專案管理</text>
+  <line x1="990" y1="337" x2="1008" y2="337" stroke="#7F7F7F" stroke-width="2" stroke-dasharray="4 3"/>
+  <!-- band C -->
+  <rect x="5" y="482" width="1190" height="80" rx="10" fill="#EEF6E8"/>
+  <text x="60" y="530" text-anchor="middle" font-size="22" font-weight="bold" fill="#385723">延伸應用</text>
+  <line x1="875" y1="462" x2="875" y2="490" stroke="#595959" stroke-width="2.5" marker-end="url(#a)"/>
+  <rect x="490" y="492" width="700" height="60" rx="10" fill="#fff" stroke="#548235" stroke-width="2"/>
+  <text x="840" y="530" text-anchor="middle" font-size="21" fill="#262626"><tspan font-weight="bold">畢業專題（非補助）</tspan>　→　競賽・產學合作・場域試營運・社會實踐</text>
+  <!-- band D relay project -->
+  <rect x="5" y="572" width="1190" height="144" rx="10" fill="#FFF7E1"/>
+  <text x="60" y="638" text-anchor="middle" font-size="22" font-weight="bold" fill="#7F6000">接力</text>
+  <text x="60" y="666" text-anchor="middle" font-size="22" font-weight="bold" fill="#7F6000">專案</text>
+  <text x="130" y="602" font-size="20" font-weight="bold" fill="#7F6000">跨課程接力專案：同一屆學生 × 同一場域問題 × 同一 GitHub 專案庫</text>
+  <g text-anchor="middle">
+    <rect x="125" y="620" width="186" height="80" rx="10" fill="#fff" stroke="#BF9000" stroke-width="2"/>
+    <text x="218" y="652" font-size="20" font-weight="bold" fill="#262626">需求規格</text><text x="218" y="682" font-size="18" fill="#595959">驗收準則</text>
+    <rect x="341" y="620" width="186" height="80" rx="10" fill="#fff" stroke="#BF9000" stroke-width="2"/>
+    <text x="434" y="652" font-size="20" font-weight="bold" fill="#262626">網頁原型</text><text x="434" y="682" font-size="18" fill="#595959">API・LLM 功能</text>
+    <rect x="557" y="620" width="186" height="80" rx="10" fill="#fff" stroke="#BF9000" stroke-width="2"/>
+    <text x="650" y="652" font-size="20" font-weight="bold" fill="#262626">架構重構</text><text x="650" y="682" font-size="18" fill="#595959">ADR・設計模式</text>
+    <rect x="773" y="620" width="186" height="80" rx="10" fill="#fff" stroke="#BF9000" stroke-width="2"/>
+    <text x="866" y="652" font-size="20" font-weight="bold" fill="#262626">自動化測試</text><text x="866" y="682" font-size="18" fill="#595959">CI 品質關卡</text>
+    <rect x="989" y="620" width="186" height="80" rx="10" fill="#fff" stroke="#BF9000" stroke-width="2"/>
+    <text x="1082" y="652" font-size="20" font-weight="bold" fill="#262626">場域部署</text><text x="1082" y="682" font-size="18" fill="#595959">回饋與迭代</text>
+  </g>
+  <g stroke="#BF9000" stroke-width="3">
+    <line x1="311" y1="660" x2="339" y2="660" marker-end="url(#g)"/>
+    <line x1="527" y1="660" x2="555" y2="660" marker-end="url(#g)"/>
+    <line x1="743" y1="660" x2="771" y2="660" marker-end="url(#g)"/>
+    <line x1="959" y1="660" x2="987" y2="660" marker-end="url(#g)"/>
+  </g>
+</svg></body></html>

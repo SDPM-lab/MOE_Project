@@ -1,0 +1,68 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css"></head><body>
+<svg id="fig" width="1200" height="640" viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7F7F7F"/></marker>
+  </defs>
+  <!-- external boxes -->
+  <rect x="20" y="22" width="270" height="96" rx="12" fill="#F7F7F7" stroke="#8C8C8C" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="155" y="62" text-anchor="middle" font-size="25" font-weight="bold" fill="#404040">系課程委員會</text>
+  <text x="155" y="96" text-anchor="middle" font-size="21" fill="#595959">審議課群・督導執行</text>
+  <rect x="910" y="22" width="270" height="96" rx="12" fill="#F7F7F7" stroke="#8C8C8C" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="1045" y="62" text-anchor="middle" font-size="25" font-weight="bold" fill="#404040">推動中心・示範學校</text>
+  <text x="1045" y="96" text-anchor="middle" font-size="21" fill="#595959">教學共備・教材上架</text>
+  <line x1="290" y1="70" x2="375" y2="70" stroke="#8C8C8C" stroke-width="2.5" stroke-dasharray="8 6" marker-start="arr"/>
+  <line x1="825" y1="70" x2="910" y2="70" stroke="#8C8C8C" stroke-width="2.5" stroke-dasharray="8 6" marker-end="arr"/>
+  <!-- PI -->
+  <rect x="375" y="12" width="450" height="116" rx="14" fill="#1F4E79"/>
+  <text x="600" y="50" text-anchor="middle" font-size="27" font-weight="bold" fill="#fff">計畫主持人　○○○ 教授</text>
+  <text x="600" y="84" text-anchor="middle" font-size="21" fill="#fff">計畫統籌・課群規劃・場域與推動中心聯繫</text>
+  <text x="600" y="113" text-anchor="middle" font-size="20" fill="#BDD7EE">授課：軟體需求分析</text>
+  <!-- tree to co-PIs -->
+  <path d="M600,128 V146 M310,146 H890 M310,146 V164 M890,146 V164" stroke="#595959" stroke-width="2.5" fill="none"/>
+  <!-- co-PI left -->
+  <rect x="60" y="164" width="500" height="166" rx="12" fill="#EAF2FB" stroke="#2E75B6" stroke-width="2"/>
+  <path d="M60,176 a12,12 0 0 1 12,-12 H548 a12,12 0 0 1 12,12 V208 H60 Z" fill="#2E75B6"/>
+  <text x="310" y="196" text-anchor="middle" font-size="23" font-weight="bold" fill="#fff">協同主持人｜課群與教材發展組</text>
+  <circle cx="90" cy="233" r="5" fill="#2E75B6"/><text x="104" y="240" font-size="21" fill="#1F1F1F">AI 協作開發環境建置與 AI 使用規範</text>
+  <circle cx="90" cy="263" r="5" fill="#2E75B6"/><text x="104" y="270" font-size="21" fill="#1F1F1F">跨課程接力專案整合・教材模組化與上架</text>
+  <text x="84" y="314" font-size="20" fill="#2E75B6" font-weight="bold">授課：軟體設計</text>
+  <!-- co-PI right -->
+  <rect x="640" y="164" width="500" height="166" rx="12" fill="#EAF2FB" stroke="#2E75B6" stroke-width="2"/>
+  <path d="M640,176 a12,12 0 0 1 12,-12 H1128 a12,12 0 0 1 12,12 V208 H640 Z" fill="#2E75B6"/>
+  <text x="890" y="196" text-anchor="middle" font-size="23" font-weight="bold" fill="#fff">協同主持人｜場域實踐與成效評估組</text>
+  <circle cx="670" cy="233" r="5" fill="#2E75B6"/><text x="684" y="240" font-size="21" fill="#1F1F1F">場域夥伴與需求池經營・競賽與產學延伸</text>
+  <circle cx="670" cy="263" r="5" fill="#2E75B6"/><text x="684" y="270" font-size="21" fill="#1F1F1F">學習成效追蹤評估・AI 協作歷程分析</text>
+  <text x="664" y="314" font-size="20" fill="#2E75B6" font-weight="bold">授課：軟體品質與測試</text>
+  <!-- bus to bottom groups -->
+  <path d="M310,330 V352 M890,330 V352 M205,352 H995 M205,352 V374 M600,352 V374 M995,352 V374" stroke="#595959" stroke-width="2.5" fill="none"/>
+  <!-- group A -->
+  <rect x="20" y="374" width="370" height="252" rx="12" fill="#FFFFFF" stroke="#2E75B6" stroke-width="2"/>
+  <path d="M20,386 a12,12 0 0 1 12,-12 H378 a12,12 0 0 1 12,12 V418 H20 Z" fill="#2E75B6"/>
+  <text x="205" y="406" text-anchor="middle" font-size="23" font-weight="bold" fill="#fff">課群教學團隊（本系）</text>
+  <g font-size="21" fill="#1F1F1F">
+    <rect x="36" y="432" width="338" height="40" rx="8" fill="#DEEBF7"/><text x="205" y="459" text-anchor="middle">基礎｜軟體需求分析</text>
+    <rect x="36" y="480" width="338" height="40" rx="8" fill="#DEEBF7"/><text x="205" y="507" text-anchor="middle">核心｜全球資訊網程式設計</text>
+    <rect x="36" y="528" width="338" height="40" rx="8" fill="#DEEBF7"/><text x="205" y="555" text-anchor="middle">核心｜軟體設計</text>
+    <rect x="36" y="576" width="338" height="40" rx="8" fill="#DEEBF7"/><text x="205" y="603" text-anchor="middle">進階｜軟體品質與測試</text>
+  </g>
+  <!-- group B -->
+  <rect x="415" y="374" width="370" height="252" rx="12" fill="#FFFFFF" stroke="#C55A11" stroke-width="2"/>
+  <path d="M415,386 a12,12 0 0 1 12,-12 H773 a12,12 0 0 1 12,12 V418 H415 Z" fill="#C55A11"/>
+  <text x="600" y="406" text-anchor="middle" font-size="23" font-weight="bold" fill="#fff">跨域與場域夥伴</text>
+  <g font-size="21" fill="#1F1F1F">
+    <rect x="431" y="432" width="338" height="40" rx="8" fill="#FBE5D6"/><text x="600" y="459" text-anchor="middle">跨域教師｜視設・特教・教育</text>
+    <rect x="431" y="480" width="338" height="40" rx="8" fill="#FBE5D6"/><text x="600" y="507" text-anchor="middle">業界專家｜架構・品保・產品</text>
+    <rect x="431" y="528" width="338" height="40" rx="8" fill="#FBE5D6"/><text x="600" y="555" text-anchor="middle">場域導師｜學校・社福・產業</text>
+    <rect x="431" y="576" width="338" height="40" rx="8" fill="#FBE5D6"/><text x="600" y="603" text-anchor="middle">跨域共授・共學・共創</text>
+  </g>
+  <!-- group C -->
+  <rect x="810" y="374" width="370" height="252" rx="12" fill="#FFFFFF" stroke="#548235" stroke-width="2"/>
+  <path d="M810,386 a12,12 0 0 1 12,-12 H1168 a12,12 0 0 1 12,12 V418 H810 Z" fill="#548235"/>
+  <text x="995" y="406" text-anchor="middle" font-size="23" font-weight="bold" fill="#fff">行政與技術支援（3 名）</text>
+  <g font-size="21" fill="#1F1F1F">
+    <rect x="826" y="432" width="338" height="40" rx="8" fill="#E2EFDA"/><text x="995" y="459" text-anchor="middle">專任助理 1 名｜行政・經費</text>
+    <rect x="826" y="480" width="338" height="40" rx="8" fill="#E2EFDA"/><text x="995" y="507" text-anchor="middle">網站經營・教材上架</text>
+    <rect x="826" y="528" width="338" height="40" rx="8" fill="#E2EFDA"/><text x="995" y="555" text-anchor="middle">兼任助理 2 名｜課程 TA</text>
+    <rect x="826" y="576" width="338" height="40" rx="8" fill="#E2EFDA"/><text x="995" y="603" text-anchor="middle">AI 環境・CI 維運・數據分析</text>
+  </g>
+</svg></body></html>
