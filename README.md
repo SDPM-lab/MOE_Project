@@ -17,12 +17,15 @@
 | 路徑 | 說明 |
 | --- | --- |
 | `生成式AI協作軟體工程人才培育計畫_B類申請書_貳至肆.docx` | 申請書第貳至肆章（全程計畫摘要、116 年度計畫執行規劃、116 年度重點工作查核點），A4 共 25 頁，含圖 4 幅、表 30 張 |
-| `src/build_docx.js` | 產生 Word 檔之腳本（內文皆在此檔；圖表編號自動產生） |
-| `src/figs/` | 圖 1 為計畫架構圖原圖（已去除參考虛線）；圖 2–4 由 HTML/SVG 繪製後轉為 PNG |
+| `生成式AI協作軟體工程人才培育計畫_B類申請書_預期質化成果.docx` | 申請書「陸、二、預期質化成果」，A4 共 5 頁，含圖 6-1、表 6-1 至 6-4 |
+| `src/build_docx.js` | 產生貳至肆章之腳本（內文皆在此檔；圖表編號自動產生） |
+| `src/build_qualitative.js` | 產生預期質化成果之腳本（圖表編號為「表 6-n」，與貳至肆章之表 1–30 區隔） |
+| `src/docx_kit.js` | 共用排版工具（字型、段落、表格、圖表編號、文件組裝與輸出） |
+| `src/figs/` | 圖 1 為計畫架構圖原圖（已去除參考虛線）；其餘圖由 HTML/SVG 繪製後轉為 PNG（`fig5_microsystem` 為圖 6-1） |
 
 ## 待補資料
 
-文件中以**黃色螢光**標示須由計畫團隊依實際情形填寫或確認之處：
+貳至肆章中以**黃色螢光**標示須由計畫團隊依實際情形填寫或確認之處：
 
 - 主持人、協同主持人、授課教師、跨域教師與業師姓名（表 6、表 11、表 30）
 - 團隊成員近五年軟體開發課程教學實績（表 6）
@@ -36,8 +39,9 @@
 
 ```bash
 # 需安裝 docx（npm）；圖 2–4 另需 playwright（Chromium）
-node src/figs/render.js src/figs/fig2_org.html src/figs/fig3_map.html src/figs/fig4_fde.html
+node src/figs/render.js src/figs/fig2_org.html src/figs/fig3_map.html src/figs/fig4_fde.html src/figs/fig5_microsystem.html
 node src/build_docx.js
+node src/build_qualitative.js
 ```
 
 `src/build_docx.js` 中的 `LINE_SCALE` 可微調整體行距；目前設定在行高 ±2% 的排版差異下仍維持 25 頁。

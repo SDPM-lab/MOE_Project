@@ -1,0 +1,135 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css"></head><body>
+<svg id="fig" width="1200" height="574" viewBox="0 0 1200 574" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#595959"/></marker>
+    <marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2E75B6"/></marker>
+  </defs>
+
+  <!-- 使用者與前端 -->
+  <rect x="20" y="14" width="160" height="56" rx="10" fill="#F2F2F2" stroke="#7F7F7F" stroke-width="2"/>
+  <text x="100" y="49" text-anchor="middle" font-size="21" font-weight="bold" fill="#262626">場域使用者</text>
+  <line x1="182" y1="42" x2="216" y2="42" stroke="#595959" stroke-width="2.5" marker-start="url(#a)" marker-end="url(#a)"/>
+  <rect x="218" y="14" width="672" height="56" rx="10" fill="#FFFFFF" stroke="#2E75B6" stroke-width="2"/>
+  <text x="554" y="49" text-anchor="middle" font-size="20" fill="#262626"><tspan font-weight="bold">前端</tspan>：網頁／行動介面（響應式・無障礙 WCAG 2.1 AA）</text>
+  <line x1="555" y1="70" x2="555" y2="92" stroke="#595959" stroke-width="2.5" marker-end="url(#a)"/>
+
+  <!-- API Gateway -->
+  <rect x="20" y="94" width="870" height="52" rx="10" fill="#DEEBF7" stroke="#2E75B6" stroke-width="2"/>
+  <text x="455" y="127" text-anchor="middle" font-size="20" fill="#1F1F1F"><tspan font-weight="bold">API Gateway</tspan>：身分驗證（OAuth 2.0／JWT）・流量控管・服務路由</text>
+  <g stroke="#595959" stroke-width="2.5">
+    <line x1="120" y1="146" x2="120" y2="170" marker-end="url(#a)"/>
+    <line x1="340" y1="146" x2="340" y2="170" marker-end="url(#a)"/>
+    <line x1="675" y1="146" x2="675" y2="170" marker-end="url(#a)"/>
+  </g>
+
+  <!-- 領域服務 A -->
+  <rect x="20" y="172" width="200" height="150" rx="10" fill="#FFFFFF" stroke="#2E75B6" stroke-width="2.5"/>
+  <path d="M20,182 a10,10 0 0 1 10,-10 H210 a10,10 0 0 1 10,10 V206 H20 Z" fill="#2E75B6"/>
+  <text x="120" y="197" text-anchor="middle" font-size="19" font-weight="bold" fill="#fff">領域服務 A</text>
+  <g font-size="17" fill="#262626" text-anchor="middle">
+    <text x="120" y="238">如：紀錄服務</text>
+    <text x="120" y="268">REST API</text>
+    <text x="120" y="298">OpenAPI 契約</text>
+  </g>
+  <line x1="120" y1="322" x2="120" y2="344" stroke="#2E75B6" stroke-width="2.5"/>
+  <path d="M60,354 a60,10 0 0 1 120,0 v40 a60,10 0 0 1 -120,0 z" fill="#EAF2FB" stroke="#2E75B6" stroke-width="2"/>
+  <path d="M60,354 a60,10 0 0 0 120,0" fill="none" stroke="#2E75B6" stroke-width="2"/>
+  <text x="120" y="387" text-anchor="middle" font-size="16" fill="#262626">資料庫 A</text>
+
+  <!-- 領域服務 B -->
+  <rect x="240" y="172" width="200" height="150" rx="10" fill="#FFFFFF" stroke="#2E75B6" stroke-width="2.5"/>
+  <path d="M240,182 a10,10 0 0 1 10,-10 H430 a10,10 0 0 1 10,10 V206 H240 Z" fill="#2E75B6"/>
+  <text x="340" y="197" text-anchor="middle" font-size="19" font-weight="bold" fill="#fff">領域服務 B</text>
+  <g font-size="17" fill="#262626" text-anchor="middle">
+    <text x="340" y="238">如：通知服務</text>
+    <text x="340" y="268">事件訂閱</text>
+    <text x="340" y="298">非同步處理</text>
+  </g>
+  <line x1="340" y1="322" x2="340" y2="344" stroke="#2E75B6" stroke-width="2.5"/>
+  <path d="M280,354 a60,10 0 0 1 120,0 v40 a60,10 0 0 1 -120,0 z" fill="#EAF2FB" stroke="#2E75B6" stroke-width="2"/>
+  <path d="M280,354 a60,10 0 0 0 120,0" fill="none" stroke="#2E75B6" stroke-width="2"/>
+  <text x="340" y="387" text-anchor="middle" font-size="16" fill="#262626">資料庫 B</text>
+
+  <!-- AI 服務（LLM 包覆層） -->
+  <rect x="460" y="172" width="430" height="240" rx="10" fill="#F7FAFD" stroke="#2E75B6" stroke-width="2.5"/>
+  <path d="M460,182 a10,10 0 0 1 10,-10 H880 a10,10 0 0 1 10,10 V206 H460 Z" fill="#2E75B6"/>
+  <text x="675" y="197" text-anchor="middle" font-size="19" font-weight="bold" fill="#fff">AI 服務（LLM 包覆層）</text>
+  <g text-anchor="middle">
+    <rect x="471" y="218" width="88" height="58" rx="8" fill="#FFFFFF" stroke="#2E75B6" stroke-width="2"/>
+    <text x="515" y="243" font-size="16" font-weight="bold" fill="#1F1F1F">輸入防護</text>
+    <text x="515" y="265" font-size="13" fill="#404040">個資遮罩</text>
+    <rect x="578" y="218" width="88" height="58" rx="8" fill="#FFFFFF" stroke="#2E75B6" stroke-width="2"/>
+    <text x="622" y="243" font-size="16" font-weight="bold" fill="#1F1F1F">提示模板</text>
+    <text x="622" y="265" font-size="13" fill="#404040">樣式庫</text>
+    <rect x="685" y="218" width="88" height="58" rx="8" fill="#7030A0" stroke="#7030A0" stroke-width="2"/>
+    <text x="729" y="243" font-size="16" font-weight="bold" fill="#FFFFFF">LLM 推論</text>
+    <text x="729" y="265" font-size="13" fill="#F2E6FA">機率性核心</text>
+    <rect x="792" y="218" width="88" height="58" rx="8" fill="#FFFFFF" stroke="#2E75B6" stroke-width="2"/>
+    <text x="836" y="243" font-size="16" font-weight="bold" fill="#1F1F1F">輸出驗證</text>
+    <text x="836" y="265" font-size="13" fill="#404040">JSON Schema</text>
+  </g>
+  <g stroke="#2E75B6" stroke-width="2.5">
+    <line x1="559" y1="247" x2="576" y2="247" marker-end="url(#p)"/>
+    <line x1="666" y1="247" x2="683" y2="247" marker-end="url(#p)"/>
+    <line x1="773" y1="247" x2="790" y2="247" marker-end="url(#p)"/>
+    <line x1="836" y1="276" x2="836" y2="294" marker-end="url(#p)"/>
+  </g>
+  <rect x="471" y="296" width="409" height="44" rx="8" fill="#FFFFFF" stroke="#2E75B6" stroke-width="2"/>
+  <text x="675" y="324" text-anchor="middle" font-size="16" fill="#1F1F1F"><tspan font-weight="bold">回退機制</tspan>（驗證失敗時）：重試・預設回應・轉人工處理</text>
+  <rect x="471" y="352" width="200" height="48" rx="8" fill="#EAF2FB" stroke="#2E75B6" stroke-width="2"/>
+  <text x="571" y="382" text-anchor="middle" font-size="15" fill="#1F1F1F">向量資料庫（RAG 檢索）</text>
+  <rect x="680" y="352" width="200" height="48" rx="8" fill="#EAF2FB" stroke="#2E75B6" stroke-width="2"/>
+  <text x="780" y="382" text-anchor="middle" font-size="15" fill="#1F1F1F">評估資料集（回歸評估）</text>
+
+  <!-- 平台與治理 -->
+  <text x="20" y="436" font-size="16" fill="#595959">平台與治理（各服務共用）</text>
+  <g text-anchor="middle">
+    <rect x="20" y="444" width="210" height="68" rx="10" fill="#F2F2F2" stroke="#7F7F7F" stroke-width="2"/>
+    <text x="125" y="472" font-size="18" font-weight="bold" fill="#262626">容器化部署</text>
+    <text x="125" y="498" font-size="15" fill="#404040">Docker・容器編排</text>
+    <rect x="240" y="444" width="210" height="68" rx="10" fill="#F2F2F2" stroke="#7F7F7F" stroke-width="2"/>
+    <text x="345" y="472" font-size="18" font-weight="bold" fill="#262626">CI／CD 品質關卡</text>
+    <text x="345" y="498" font-size="15" fill="#404040">測試・突變測試・安全掃描</text>
+    <rect x="460" y="444" width="210" height="68" rx="10" fill="#F2F2F2" stroke="#7F7F7F" stroke-width="2"/>
+    <text x="565" y="472" font-size="18" font-weight="bold" fill="#262626">可觀測性</text>
+    <text x="565" y="498" font-size="15" fill="#404040">日誌・指標・分散式追蹤</text>
+    <rect x="680" y="444" width="210" height="68" rx="10" fill="#F2F2F2" stroke="#7F7F7F" stroke-width="2"/>
+    <text x="785" y="472" font-size="18" font-weight="bold" fill="#262626">開源治理</text>
+    <text x="785" y="498" font-size="15" fill="#404040">授權・SBOM・貢獻指南</text>
+  </g>
+
+  <!-- 圖例 -->
+  <rect x="20" y="534" width="26" height="18" rx="3" fill="#FFFFFF" stroke="#2E75B6" stroke-width="2"/>
+  <text x="54" y="549" font-size="16" fill="#262626">確定性程式：可測試、可驗證</text>
+  <rect x="330" y="534" width="26" height="18" rx="3" fill="#7030A0"/>
+  <text x="364" y="549" font-size="16" fill="#262626">機率性 LLM 核心：以評估資料集與回歸評估驗證</text>
+
+  <!-- 課程對應 -->
+  <rect x="920" y="14" width="270" height="42" rx="8" fill="#595959"/>
+  <text x="1055" y="42" text-anchor="middle" font-size="20" font-weight="bold" fill="#fff">課程對應</text>
+  <g text-anchor="middle">
+    <rect x="920" y="66" width="270" height="102" rx="10" fill="#FFFFFF" stroke="#2E75B6" stroke-width="2.5"/>
+    <path d="M920,76 a10,10 0 0 1 10,-10 H1180 a10,10 0 0 1 10,10 V100 H920 Z" fill="#2E75B6"/>
+    <text x="1055" y="91" font-size="18" font-weight="bold" fill="#fff">生成式人工智慧</text>
+    <text x="1055" y="128" font-size="16" fill="#262626">AI 服務・提示設計</text>
+    <text x="1055" y="154" font-size="16" fill="#262626">評估資料集</text>
+
+    <rect x="920" y="180" width="270" height="102" rx="10" fill="#FFFFFF" stroke="#C55A11" stroke-width="2.5"/>
+    <path d="M920,190 a10,10 0 0 1 10,-10 H1180 a10,10 0 0 1 10,10 V214 H920 Z" fill="#C55A11"/>
+    <text x="1055" y="205" font-size="18" font-weight="bold" fill="#fff">軟體設計</text>
+    <text x="1055" y="242" font-size="16" fill="#262626">服務切分・API 契約</text>
+    <text x="1055" y="268" font-size="16" fill="#262626">C4 架構・ADR</text>
+
+    <rect x="920" y="294" width="270" height="102" rx="10" fill="#FFFFFF" stroke="#C55A11" stroke-width="2.5"/>
+    <path d="M920,304 a10,10 0 0 1 10,-10 H1180 a10,10 0 0 1 10,10 V328 H920 Z" fill="#C55A11"/>
+    <text x="1055" y="319" font-size="18" font-weight="bold" fill="#fff">網際網路應用</text>
+    <text x="1055" y="356" font-size="16" fill="#262626">服務實作與整合</text>
+    <text x="1055" y="382" font-size="16" fill="#262626">容器化部署・CI／CD</text>
+
+    <rect x="920" y="408" width="270" height="104" rx="10" fill="#FFFFFF" stroke="#548235" stroke-width="2.5"/>
+    <path d="M920,418 a10,10 0 0 1 10,-10 H1180 a10,10 0 0 1 10,10 V442 H920 Z" fill="#548235"/>
+    <text x="1055" y="433" font-size="18" font-weight="bold" fill="#fff">軟體品質與測試</text>
+    <text x="1055" y="471" font-size="16" fill="#262626">契約與端對端測試</text>
+    <text x="1055" y="497" font-size="16" fill="#262626">品質關卡・回歸評估</text>
+  </g>
+</svg></body></html>
