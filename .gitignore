@@ -1,3 +1,8 @@
 node_modules/
 ~$*.docx
 .DS_Store
+
+# 個人與帳戶資料（聯絡電話、匯款帳戶、簡歷）及以其產生之完整版申請書，僅存於本機
+src/private_data.json
+生成式AI協作軟體工程人才培育計畫_B類申請書.docx
+生成式AI協作軟體工程人才培育計畫_B類申請書.pdf

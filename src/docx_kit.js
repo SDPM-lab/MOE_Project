@@ -66,11 +66,17 @@ function createKit({ lineScale = 1, tables = [], figures = [], prefix = '' } = {
   }
   const exact = (pt) => ({ line: Math.round(pt * 20 * lineScale), lineRule: LineRuleType.EXACT });
 
-  function H1(text) {
-    return new Paragraph({ heading: HeadingLevel.HEADING_1, keepNext: true, children: runs(text, { size: 32, bold: true }) });
+  function H1(text, opts = {}) {
+    return new Paragraph({
+      heading: HeadingLevel.HEADING_1, keepNext: true, pageBreakBefore: !!opts.pageBreak,
+      children: runs(text, { size: 32, bold: true }),
+    });
   }
-  function H2(text) {
-    return new Paragraph({ heading: HeadingLevel.HEADING_2, keepNext: true, children: runs(text, { size: 28, bold: true }) });
+  function H2(text, opts = {}) {
+    return new Paragraph({
+      heading: HeadingLevel.HEADING_2, keepNext: true, pageBreakBefore: !!opts.pageBreak,
+      children: runs(text, { size: 28, bold: true }),
+    });
   }
   function H3(text, opts = {}) {
     return new Paragraph({
@@ -122,10 +128,21 @@ function createKit({ lineScale = 1, tables = [], figures = [], prefix = '' } = {
     seenTables.push(key);
     return CAP(`表 ${T(key)}　${title}`, { keepNext: true, ...opts });
   }
-  function NOTE(text) {
+  function NOTE(text, opts = {}) {
     return new Paragraph({
-      spacing: { before: 40, after: 100, ...exact(15) },
+      alignment: opts.align,
+      keepNext: opts.keepNext,
+      spacing: { before: opts.before ?? 40, after: opts.after ?? 100, ...exact(15) },
       children: runs(text, { size: 20 }),
+    });
+  }
+  // 申請書格式之撰寫說明（小字●項目）；cont 為同一項目之續段（不加●）
+  function GUIDE(text, opts = {}) {
+    return new Paragraph({
+      alignment: AlignmentType.BOTH,
+      spacing: { ...exact(12.5), before: 0, after: 20 },
+      indent: { left: opts.left ?? 760, hanging: opts.cont ? 0 : 280 },
+      children: [...(opts.cont ? [] : [tr('●\t', { size: 14 })]), ...runs(text, { size: 18 })],
     });
   }
   function FIGURE(file, key, title, widthPx = 640) {
@@ -158,7 +175,7 @@ function createKit({ lineScale = 1, tables = [], figures = [], prefix = '' } = {
       const hang = m && m[1].length > 2 ? 340 : 260;
       return new Paragraph({
         alignment: o.align || AlignmentType.LEFT,
-        spacing: { ...exact(size === 18 ? 12 : size === 20 ? 14 : 15.5), before: 0, after: 0 },
+        spacing: { ...exact(size === 18 ? 12 : size === 20 ? 13.5 : 14.5), before: 0, after: 0 },
         indent: m ? { left: hang, hanging: hang } : undefined,
         keepNext: o.keepNext,
         children: m ? [tr(m[1] + '\t', { size }), ...runs(m[2], { size, bold: o.bold })] : runs(s, { size, bold: o.bold }),
@@ -174,7 +191,7 @@ function createKit({ lineScale = 1, tables = [], figures = [], prefix = '' } = {
       rowSpan: s.rowSpan,
       verticalAlign: s.vAlign || o.vAlign || VerticalAlign.CENTER,
       shading: (s.fill || o.fill) ? { fill: s.fill || o.fill, type: ShadingType.CLEAR, color: 'auto' } : undefined,
-      margins: { top: o.padY ?? 50, bottom: o.padY ?? 50, left: o.padX ?? 85, right: o.padX ?? 85 },
+      margins: { top: o.padY ?? 35, bottom: o.padY ?? 35, left: o.padX ?? 85, right: o.padX ?? 85 },
       children: cellParas(s.t, { align: s.align || o.align, bold: s.bold ?? o.bold, size: o.size, keepNext: o.keepNext }),
     });
   }
@@ -209,10 +226,47 @@ function createKit({ lineScale = 1, tables = [], figures = [], prefix = '' } = {
     });
   }
 
+  // 一般表格（含跨欄 span、跨列 rowSpan）：widths 為各欄寬；rows 每列為 cell spec 陣列，
+  // 被上方 rowSpan 佔用之欄位自動略過。o.header：前幾列為表頭（底色、粗體、跨頁重複）
+  function GRID(widths, rows, o = {}) {
+    const sum = widths.reduce((a, b) => a + b, 0);
+    if (sum !== TEXT_W) throw new Error(`grid width ${sum} != ${TEXT_W}`);
+    const occ = new Array(widths.length).fill(0);
+    const header = o.header || 0;
+    const trs = rows.map((r, ri) => {
+      const blocked = occ.map((v) => v > 0);
+      const placed = new Array(widths.length).fill(0);
+      let ci = 0;
+      const isHead = ri < header;
+      const cells = r.map((spec0) => {
+        const s = (typeof spec0 === 'object' && !Array.isArray(spec0)) ? spec0 : { t: spec0 };
+        while (ci < widths.length && blocked[ci]) ci++;
+        const span = s.span || 1;
+        if (ci + span > widths.length) throw new Error(`grid row ${ri} overflows`);
+        const w = widths.slice(ci, ci + span).reduce((a, b) => a + b, 0);
+        if (s.rowSpan > 1) for (let k = ci; k < ci + span; k++) placed[k] = s.rowSpan - 1;
+        ci += span;
+        return C(isHead ? { fill: HEAD_FILL, bold: true, align: CEN, ...s } : s, w, {
+          align: s.align || (isHead ? CEN : o.align), size: o.size, padX: o.padX, padY: o.padY,
+          keepNext: isHead || (o.keep && ri < rows.length - 1),
+        });
+      });
+      for (let k = 0; k < widths.length; k++) occ[k] = blocked[k] ? occ[k] - 1 : placed[k];
+      return new TableRow({ tableHeader: isHead, cantSplit: o.cantSplit !== false, children: cells });
+    });
+    return new Table({
+      width: { size: TEXT_W, type: WidthType.DXA },
+      columnWidths: widths,
+      layout: TableLayoutType.FIXED,
+      borders: BORDERS,
+      rows: trs,
+    });
+  }
+
   return {
     T, F, checkNumbering,
-    tr, runs, exact, H1, H2, H3, P, N, items, pitems, ARROW, CAP, TCAP, NOTE, FIGURE,
-    C, TABLE,
+    tr, runs, exact, H1, H2, H3, P, N, items, pitems, ARROW, CAP, TCAP, NOTE, GUIDE, FIGURE,
+    C, TABLE, GRID,
   };
 }
 
@@ -264,13 +318,18 @@ function makeDocument({ title, description, children }) {
 
 // docx 套件會在螢光標示外另寫入 <w:highlightCs>，不符 OOXML 綱要，輸出前移除
 // （jszip 為 docx 之相依套件，自 docx 所在位置解析）
-function writeDocx(doc, out) {
+// transform：輸出前對 document.xml 之額外處理（如插入目次欄位）
+function writeDocx(doc, out, transform = (x) => x) {
   const JSZip = require(require.resolve('jszip', { paths: [path.dirname(require.resolve('docx'))] }));
   return Packer.toBuffer(doc)
     .then((buf) => JSZip.loadAsync(buf))
     .then(async (zip) => {
       const xml = await zip.file('word/document.xml').async('string');
-      zip.file('word/document.xml', xml.replace(/<w:highlightCs\b[^>]*\/>/g, ''));
+      zip.file('word/document.xml', transform(xml.replace(/<w:highlightCs\b[^>]*\/>/g, '')));
+      // 內文已於中英文間保留空格，關閉 Word 自動調整中英文間距，使 Word 與 LibreOffice 排版一致
+      const styles = await zip.file('word/styles.xml').async('string');
+      zip.file('word/styles.xml', styles.replace('<w:pPrDefault/>',
+        '<w:pPrDefault><w:pPr><w:autoSpaceDE w:val="0"/><w:autoSpaceDN w:val="0"/></w:pPr></w:pPrDefault>'));
       return zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' });
     })
     .then((buf) => {
