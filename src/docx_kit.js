@@ -215,7 +215,7 @@ function createKit({ lineScale = 1, tables = [], figures = [], prefix = '' } = {
         ci += span;
         return C(s, w, { align, size: o.size, padX: o.padX, keepNext: o.keep && ri < rows.length - 1 });
       });
-      return new TableRow({ cantSplit: o.cantSplit !== false, children: cells });
+      return new TableRow({ cantSplit: o.cantSplit === false ? undefined : true, children: cells });
     });
     return new Table({
       width: { size: TEXT_W, type: WidthType.DXA },
@@ -252,7 +252,8 @@ function createKit({ lineScale = 1, tables = [], figures = [], prefix = '' } = {
         });
       });
       for (let k = 0; k < widths.length; k++) occ[k] = blocked[k] ? occ[k] - 1 : placed[k];
-      return new TableRow({ tableHeader: isHead, cantSplit: o.cantSplit !== false, children: cells });
+      // 屬性為 false 時須省略：docx 會寫出 w:val="false"，而 Word 之綱要於此僅接受 on/off
+      return new TableRow({ tableHeader: isHead || undefined, cantSplit: o.cantSplit === false ? undefined : true, children: cells });
     });
     return new Table({
       width: { size: TEXT_W, type: WidthType.DXA },
@@ -277,18 +278,23 @@ function makeDocument({ title, description, children }) {
     title,
     description,
     styles: {
-      default: { document: { run: { font: FONT, size: BODY } } },
-      paragraphStyles: [
-        { id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true,
+      // 標題樣式須以 default.heading1–3 覆寫 docx 之預設樣式；若另以 paragraphStyles 新增同 ID 樣式，
+      // styles.xml 會出現兩組 Heading1–3（Word 可能判定檔案有誤，或改用藍色預設標題）
+      default: {
+        document: { run: { font: FONT, size: BODY } },
+        heading1: {
           run: { font: FONT, size: 32, bold: true, color: '000000' },
-          paragraph: { spacing: { before: 280, after: 120 }, outlineLevel: 0, keepNext: true } },
-        { id: 'Heading2', name: 'Heading 2', basedOn: 'Normal', next: 'Normal', quickFormat: true,
+          paragraph: { spacing: { before: 280, after: 120 }, outlineLevel: 0, keepNext: true },
+        },
+        heading2: {
           run: { font: FONT, size: 28, bold: true, color: '000000' },
-          paragraph: { spacing: { before: 200, after: 80 }, outlineLevel: 1, keepNext: true } },
-        { id: 'Heading3', name: 'Heading 3', basedOn: 'Normal', next: 'Normal', quickFormat: true,
+          paragraph: { spacing: { before: 200, after: 80 }, outlineLevel: 1, keepNext: true },
+        },
+        heading3: {
           run: { font: FONT, size: 24, bold: true, color: '000000' },
-          paragraph: { spacing: { before: 140, after: 60 }, outlineLevel: 2, keepNext: true } },
-      ],
+          paragraph: { spacing: { before: 140, after: 60 }, outlineLevel: 2, keepNext: true },
+        },
+      },
     },
     numbering: {
       config: [{
@@ -316,7 +322,10 @@ function makeDocument({ title, description, children }) {
   });
 }
 
-// docx 套件會在螢光標示外另寫入 <w:highlightCs>，不符 OOXML 綱要，輸出前移除
+// 輸出前修正 docx 套件（9.7.1）產生之兩處問題：
+// 1. 螢光標示另寫入 <w:highlightCs>，不符 OOXML 綱要，予以移除
+// 2. 每張圖片之 <wp:docPr> 皆編為 id="1"；圖片編號重複時 Word 會判定檔案內容有問題而無法開啟，
+//    故依序重新編號（LibreOffice 不檢查此項，轉 PDF 正常不代表 Word 可開啟）
 // （jszip 為 docx 之相依套件，自 docx 所在位置解析）
 // transform：輸出前對 document.xml 之額外處理（如插入目次欄位）
 function writeDocx(doc, out, transform = (x) => x) {
@@ -324,8 +333,11 @@ function writeDocx(doc, out, transform = (x) => x) {
   return Packer.toBuffer(doc)
     .then((buf) => JSZip.loadAsync(buf))
     .then(async (zip) => {
-      const xml = await zip.file('word/document.xml').async('string');
-      zip.file('word/document.xml', transform(xml.replace(/<w:highlightCs\b[^>]*\/>/g, '')));
+      let docPrId = 0;
+      const xml = (await zip.file('word/document.xml').async('string'))
+        .replace(/<w:highlightCs\b[^>]*\/>/g, '')
+        .replace(/<wp:docPr id="\d+"/g, () => `<wp:docPr id="${++docPrId}"`);
+      zip.file('word/document.xml', transform(xml));
       // 內文已於中英文間保留空格，關閉 Word 自動調整中英文間距，使 Word 與 LibreOffice 排版一致
       const styles = await zip.file('word/styles.xml').async('string');
       zip.file('word/styles.xml', styles.replace('<w:pPrDefault/>',
